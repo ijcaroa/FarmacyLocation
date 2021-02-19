@@ -24,7 +24,7 @@ class SecondFragment : Fragment() {
     private var direccion : String =""
     private var telefono : String = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+   /* override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             nombre = it.getString("nombre", "")
@@ -32,7 +32,7 @@ class SecondFragment : Fragment() {
             direccion = it.getString("direccion", "")
             telefono = it.getString("telefono", "")
         }
-    }
+    }*/
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -45,11 +45,11 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.textVName.text = nombre
+        /*binding.textVName.text = nombre
         binding.textVComuna.text = comuna
         binding.textVAddress.text = direccion
         binding.textVTelefono.text = telefono
-
+*/
 
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
