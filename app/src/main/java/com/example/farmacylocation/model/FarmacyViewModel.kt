@@ -1,4 +1,4 @@
-package com.example.farmacylocation
+package com.example.farmacylocation.model
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -20,13 +20,24 @@ class FarmacyViewModel (application: Application) : AndroidViewModel(application
         viewModelScope.launch {
             repository.fetchListFarmacy()
         }
-        viewModelScope.launch {
-          repository.fetchNameFarmacy()
-        }
+
     }
+    // Para la lista de farmacias por comunas
     fun getFarmacyList() : LiveData<List<FarmacyEntity>> =
             repository.farmacyListLiveData
 
-    fun getLocal() : LiveData<FarmacyEntity> = repository.farmacyNameLiveData
+    // crear función para pasar las farmacias por nombre de una comuna
+
+
+   
+
+    private var comunaSelected : String = ""
+
+    fun getNameFarmacy(comuna : String) = viewModelScope.launch {
+        comunaSelected = comuna
+        repository.fetchListFarmacy()
+
+    }
+
 
 }

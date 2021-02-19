@@ -10,10 +10,9 @@
         android:name="com.example.farmacylocation.ui.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_FirstFragment_to_comunasFragment"
+            app:destination="@id/comunasFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -24,5 +23,14 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comunasFragment"
+        android:name="com.example.farmacylocation.ui.ComunasFragment"
+        android:label="fragment_comunas"
+        tools:layout="@layout/fragment_comunas" >
+        <action
+            android:id="@+id/action_comunasFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
     </fragment>
 </navigation>

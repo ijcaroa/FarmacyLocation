@@ -20,8 +20,11 @@ interface FarmacyDao {
  /*   @Query("SELECT region FROM farmacy_table ORDER BY region DESC")
     fun getAllFarmacyByRegion(): LiveData<List<FarmacyEntity>>*/
 
-    @Query("SELECT * FROM farmacy_table GROUP BY region ")
+    @Query("SELECT * FROM farmacy_table GROUP BY commune ORDER BY region ASC")
     fun getAllFarmacyByRegion(): LiveData<List<FarmacyEntity>>
+
+    @Query("SELECT * FROM farmacy_table GROUP BY name ORDER BY commune")
+    fun getNameFarmacy(): LiveData<List<FarmacyEntity>>
 
     @Query("SELECT * FROM farmacy_table WHERE fav = 1")
     fun getAllFavLocal(): LiveData<List<FarmacyEntity>>

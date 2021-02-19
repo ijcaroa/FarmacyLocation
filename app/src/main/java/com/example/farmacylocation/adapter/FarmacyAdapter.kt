@@ -1,4 +1,4 @@
-package com.example.farmacylocation
+package com.example.farmacylocation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +13,18 @@ class FarmacyAdapter: RecyclerView.Adapter<FarmacyAdapter.FarmacyVH>() {
 
     private var listFarmacy = listOf<FarmacyEntity>()
     private val selectedFarmacyList = MutableLiveData<FarmacyEntity>()
-    fun selectedFarmacy() : LiveData<FarmacyEntity> = selectedFarmacyList
+
 
     fun update (list: List<FarmacyEntity>){
         listFarmacy = list
         notifyDataSetChanged()
     }
+    fun selectedFarmacyList() : LiveData<FarmacyEntity> = selectedFarmacyList
+
     inner class FarmacyVH (private val binding: FarmacyListBinding):
             RecyclerView.ViewHolder(binding.root), View.OnClickListener{
         fun bind(itemFarmacy : FarmacyEntity){
-            binding.tVFarmacy.text = itemFarmacy.region
+            binding.tVFarmacy.text = itemFarmacy.commune
             itemView.setOnClickListener(this)
         }
 

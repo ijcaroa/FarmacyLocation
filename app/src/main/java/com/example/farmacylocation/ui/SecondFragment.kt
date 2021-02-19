@@ -5,22 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.farmacylocation.FarmacyViewModel
+import com.example.farmacylocation.model.FarmacyViewModel
 import com.example.farmacylocation.R
 import com.example.farmacylocation.databinding.FragmentSecondBinding
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
+
 class SecondFragment : Fragment() {
 
     private lateinit var binding: FragmentSecondBinding
     private val viewModel : FarmacyViewModel by activityViewModels()
-   private var nombre : String = ""
+    private var nombre : String = ""
     private var comuna : String = ""
     private var direccion : String =""
     private var telefono : String = ""
@@ -45,19 +42,14 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getLocal().observe(viewLifecycleOwner, Observer {
-            it?.let {
-                binding.textVName.text
-            }
-        })
-        binding.textVName.text = nombre
-        binding.textVComuna.text = comuna
-        binding.textVAddress.text = direccion
-        binding.textVTelefono.text = telefono
 
+                binding.textVName.text = nombre
+                binding.textVComuna.text = comuna
+                binding.textVAddress.text = direccion
+                binding.textVTelefono.text = telefono
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+                binding.buttonSecond.setOnClickListener {
+                    findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
 }

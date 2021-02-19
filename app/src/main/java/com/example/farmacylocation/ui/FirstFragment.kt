@@ -9,19 +9,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.farmacylocation.FarmacyAdapter
-import com.example.farmacylocation.FarmacyViewModel
+import com.example.farmacylocation.adapter.FarmacyAdapter
+import com.example.farmacylocation.model.FarmacyViewModel
 import com.example.farmacylocation.R
 import com.example.farmacylocation.databinding.FragmentFirstBinding
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+
 class FirstFragment : Fragment() {
     private lateinit var binding : FragmentFirstBinding
-    private val viewModel:FarmacyViewModel by activityViewModels()
+    private val viewModel: FarmacyViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -39,7 +36,7 @@ class FirstFragment : Fragment() {
         binding.FarmacyListRV.adapter = adapter
         binding.FarmacyListRV.layoutManager = LinearLayoutManager(context)
         binding.FarmacyListRV.addItemDecoration(DividerItemDecoration
-        (context,DividerItemDecoration.VERTICAL))
+            (context,DividerItemDecoration.VERTICAL))
 
 
      viewModel.getFarmacyList().observe(viewLifecycleOwner, Observer {
@@ -47,16 +44,11 @@ class FirstFragment : Fragment() {
              adapter.update(it)
          }
      })
-    adapter.selectedFarmacy().observe(viewLifecycleOwner, Observer {
+
+   adapter.selectedFarmacyList().observe(viewLifecycleOwner, Observer {
         it?.let {
-           val bundle = Bundle()
-            bundle.putString("nombre", it.name)
-            bundle.putString("comuna",it.commune)
-            bundle.putString("direccion", it.address)
-            bundle.putString("telefono", it.tel)
-
-
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,bundle)
+            viewModel.getNameFarmacy(it.commune)
+            findNavController().navigate(R.id.action_FirstFragment_to_comunasFragment)
         }
     })
     }
