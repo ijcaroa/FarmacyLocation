@@ -48,7 +48,14 @@ class FirstFragment : Fragment() {
      })
     adapter.selectedFarmacy().observe(viewLifecycleOwner, Observer {
         it?.let {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+           val bundle = Bundle()
+            bundle.putString("nombre", it.name)
+            bundle.putString("comuna",it.commune)
+            bundle.putString("direccion", it.address)
+            bundle.putString("telefono", it.tel)
+
+
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,bundle)
         }
     })
     }

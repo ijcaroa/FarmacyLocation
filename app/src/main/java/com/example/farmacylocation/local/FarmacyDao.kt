@@ -15,10 +15,8 @@ interface FarmacyDao {
     @Update
     suspend fun updateLocalFav(localFav: FarmacyEntity)
 
-
     @Query("SELECT * FROM farmacy_table ORDER BY region ASC ")
     fun getAllFarmacyByRegion(): LiveData<List<FarmacyEntity>>
-
 
     @Query("SELECT * FROM farmacy_table WHERE fav = 1")
     fun getAllFavLocal(): LiveData<List<FarmacyEntity>>
