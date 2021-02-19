@@ -20,8 +20,13 @@ class FarmacyViewModel (application: Application) : AndroidViewModel(application
         viewModelScope.launch {
             repository.fetchListFarmacy()
         }
+        viewModelScope.launch {
+          repository.fetchNameFarmacy()
+        }
     }
     fun getFarmacyList() : LiveData<List<FarmacyEntity>> =
             repository.farmacyListLiveData
+
+    fun getLocal() : LiveData<FarmacyEntity> = repository.farmacyNameLiveData
 
 }

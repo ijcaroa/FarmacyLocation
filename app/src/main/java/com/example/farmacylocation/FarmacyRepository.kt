@@ -12,6 +12,7 @@ class FarmacyRepository (private val farmacyDao: FarmacyDao) {
 
     private val retrofitClient = RetrofitClient.getRetrofit()
     val farmacyListLiveData = farmacyDao.getAllFarmacyByRegion()
+    val farmacyNameLiveData = farmacyDao.getFarmacybyName(nombre = "")
 
     suspend fun fetchListFarmacy() {
     val service = kotlin.runCatching {retrofitClient.fetchLocalesList()}
@@ -43,5 +44,24 @@ class FarmacyRepository (private val farmacyDao: FarmacyDao) {
             }
         return listFarmacyEntity
     }
+//trae el nombre
+    suspend fun fetchNameFarmacy() {
+        val service = kotlin.runCatching {retrofitClient.fetchNameLocal()}
+        service.onSuccess {
+            when(it.code()) {
+                200 -> it.body()?.let {
+                    farmacyDao.insertLocal(local = FarmacyEntity(it.id,it.region,it.nombre, it.comuna,it.direccion,it.telefono,it.latitud,it.longitud))
+                }
+                else -> Log.d("REPO", "${it.code()} - ${it.errorBody()}")
+            }
+        }
+        service.onFailure {
+            Log.e("REPO", "${it.message}")
+        }
 
-}
+    }
+
+    }
+
+
+
