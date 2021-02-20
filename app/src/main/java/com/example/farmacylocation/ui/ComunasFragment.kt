@@ -15,13 +15,10 @@ import com.example.farmacylocation.model.FarmacyViewModel
 import com.example.farmacylocation.R
 import com.example.farmacylocation.databinding.FragmentComunasBinding
 
-
 class ComunasFragment : Fragment() {
 
     private lateinit var binding: FragmentComunasBinding
     private val viewModel : FarmacyViewModel by activityViewModels()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,13 +36,11 @@ class ComunasFragment : Fragment() {
         binding.comunasRV.addItemDecoration(DividerItemDecoration
             (context,DividerItemDecoration.VERTICAL))
 
-
-        viewModel.getFarmacyList().observe(viewLifecycleOwner, Observer {
+        viewModel.getNames().observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.update(it)
+            adapter.update(it)
             }
         })
-
 
 
         adapter.selectedNamesItem().observe(viewLifecycleOwner, Observer {

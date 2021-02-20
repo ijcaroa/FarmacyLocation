@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class FarmacyViewModel (application: Application) : AndroidViewModel(application) {
 
-    private val repository : FarmacyRepository
+    private val repository: FarmacyRepository
 
     init {
         val db = FarmacyDataBase.getDataBase(application)
@@ -22,22 +22,36 @@ class FarmacyViewModel (application: Application) : AndroidViewModel(application
         }
 
     }
+
     // Para la lista de farmacias por comunas
-    fun getFarmacyList() : LiveData<List<FarmacyEntity>> =
+    fun getFarmacyList(): LiveData<List<FarmacyEntity>> =
             repository.farmacyListLiveData
 
     // crear función para pasar las farmacias por nombre de una comuna
 
+    private var comunaSelected: String = ""
 
-   
-
-    private var comunaSelected : String = ""
-
-    fun getNameFarmacy(comuna : String) = viewModelScope.launch {
-        comunaSelected = comuna
-        repository.fetchListFarmacy()
-
+    fun getNameBycomunaFromInternet(id: String, region: String, name: String,
+                                    commune: String, address: String, tel: String, lat: String, longi: String) = viewModelScope.launch {
+        comunaSelected = commune
+        repository.fetchFarmacyByComuna(id,region,name,commune,address,tel,lat,longi)
     }
 
+    fun getNames(): LiveData<List<FarmacyEntity>>
+    = repository.getAllFarmacybyComuna(comunaSelected)
+
+
+   /* fun getFarmacyName(): LiveData<List<FarmacyEntity>> =
+            repository.farmacyNameLiveData*/
+
+
+
+
+
+    /*fun getNameFarmacy(comuna : String) = viewModelScope.launch {
+        comunaSelected = comuna
+        repository.farmacyByName
+
+    }*/
 
 }

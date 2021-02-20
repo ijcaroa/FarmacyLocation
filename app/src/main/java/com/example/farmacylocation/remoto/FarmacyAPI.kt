@@ -9,5 +9,7 @@ interface FarmacyAPI {
     suspend fun fetchLocalesList() : Response<List<FarmacyData>>
 
 
-
+    @GET("getLocalesTurnos")
+    suspend fun fetchLocalComuna(comuna : String)
+    : Response<FarmacyData>
 }

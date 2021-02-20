@@ -15,11 +15,9 @@ import com.example.farmacylocation.model.FarmacyViewModel
 import com.example.farmacylocation.R
 import com.example.farmacylocation.databinding.FragmentFirstBinding
 
-
 class FirstFragment : Fragment() {
     private lateinit var binding : FragmentFirstBinding
     private val viewModel: FarmacyViewModel by activityViewModels()
-
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +36,7 @@ class FirstFragment : Fragment() {
         binding.FarmacyListRV.addItemDecoration(DividerItemDecoration
             (context,DividerItemDecoration.VERTICAL))
 
-
-     viewModel.getFarmacyList().observe(viewLifecycleOwner, Observer {
+    viewModel.getFarmacyList().observe(viewLifecycleOwner, Observer {
          it?.let {
              adapter.update(it)
          }
@@ -47,7 +44,8 @@ class FirstFragment : Fragment() {
 
    adapter.selectedFarmacyList().observe(viewLifecycleOwner, Observer {
         it?.let {
-            viewModel.getNameFarmacy(it.commune)
+            viewModel.getNameBycomunaFromInternet(it.id,it.region,it.name,it.commune,
+                    it.address,it.tel,it.lat,it.longi)
             findNavController().navigate(R.id.action_FirstFragment_to_comunasFragment)
         }
     })

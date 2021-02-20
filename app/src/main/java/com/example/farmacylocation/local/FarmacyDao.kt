@@ -12,23 +12,28 @@ interface FarmacyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLocal(local: FarmacyEntity)
 
-
-
     @Update
     suspend fun updateLocalFav(localFav: FarmacyEntity)
 
  /*   @Query("SELECT region FROM farmacy_table ORDER BY region DESC")
     fun getAllFarmacyByRegion(): LiveData<List<FarmacyEntity>>*/
 
+
+  //Esta me trae todas las comunas ordenadas por región
     @Query("SELECT * FROM farmacy_table GROUP BY commune ORDER BY region ASC")
     fun getAllFarmacyByRegion(): LiveData<List<FarmacyEntity>>
 
-    @Query("SELECT * FROM farmacy_table GROUP BY name ORDER BY commune")
+
+    @Query("SELECT * FROM farmacy_table ORDER BY name  ")
     fun getNameFarmacy(): LiveData<List<FarmacyEntity>>
 
     @Query("SELECT * FROM farmacy_table WHERE fav = 1")
     fun getAllFavLocal(): LiveData<List<FarmacyEntity>>
 
-    @Query("SELECT * FROM farmacy_table WHERE name = :nombre")
-    fun getFarmacybyName (nombre: String): LiveData<FarmacyEntity>
+
+   //esta me va a traer las farmacias por nombre de una comuna que seleccione
+    @Query("SELECT * FROM farmacy_table WHERE commune = :comuna")
+    fun getFarmacybyName (comuna: String): LiveData<List<FarmacyEntity>>
+
+
 }
