@@ -57,6 +57,7 @@ class SecondFragment : Fragment() {
         binding.buttonUbication.setOnClickListener {
             val bundle = Bundle()
             bundle.putString ("id", idFarmacy)
+            bundle.putString("nombre", nombre)
 
             findNavController().navigate(R.id.action_SecondFragment_to_mapsFragment,bundle)
 
