@@ -40,18 +40,14 @@ class FarmacyViewModel (application: Application) : AndroidViewModel(application
     fun getNames(): LiveData<List<FarmacyEntity>>
     = repository.getAllFarmacybyComuna(comunaSelected)
 
+    fun updateFav (farmacyEntity: FarmacyEntity) = viewModelScope.launch {
+        repository.updateFavLocal(farmacyEntity)
+    }
 
-   /* fun getFarmacyName(): LiveData<List<FarmacyEntity>> =
-            repository.farmacyNameLiveData*/
+    fun getFarmacyId (id: String) : LiveData<FarmacyEntity>{
+        return repository.getFarmacyId(id)
+    }
 
 
-
-
-
-    /*fun getNameFarmacy(comuna : String) = viewModelScope.launch {
-        comunaSelected = comuna
-        repository.farmacyByName
-
-    }*/
 
 }

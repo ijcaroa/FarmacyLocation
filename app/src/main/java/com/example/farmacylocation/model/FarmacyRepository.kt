@@ -74,6 +74,13 @@ class FarmacyRepository (private val farmacyDao: FarmacyDao) {
   return farmacyDao.getFarmacybyName(commune)
         }
 
+    suspend fun updateFavLocal(farmacyEntity: FarmacyEntity) {
+        farmacyDao.updateLocalFav(farmacyEntity)
+    }
+
+    fun getFarmacyId (id: String) : LiveData<FarmacyEntity>{
+        return farmacyDao.getFarmacyById(id)
+    }
 }
 
 

@@ -21,6 +21,12 @@ class SecondFragment : Fragment() {
     private var comuna : String = ""
     private var direccion : String =""
     private var telefono : String = ""
+    private var latitud : String = ""
+    private var longitud : String = ""
+    private var idFarmacy : String = ""
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +35,9 @@ class SecondFragment : Fragment() {
             comuna = it.getString("comuna","")
             direccion = it.getString("direccion", "")
             telefono = it.getString("telefono", "")
+            latitud = it.getString("latitud", "")
+            longitud = it.getString("longitud","")
+            idFarmacy = it.getString("id", "")
         }
     }
 
@@ -43,6 +52,16 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+        binding.buttonUbication.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString ("id", idFarmacy)
+
+            findNavController().navigate(R.id.action_SecondFragment_to_mapsFragment,bundle)
+
+        }
+
                 binding.textVName.text = nombre
                 binding.textVComuna.text = comuna
                 binding.textVAddress.text = direccion
@@ -50,6 +69,9 @@ class SecondFragment : Fragment() {
 
                 binding.buttonSecond.setOnClickListener {
                     findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+                    
+
         }
+
     }
 }

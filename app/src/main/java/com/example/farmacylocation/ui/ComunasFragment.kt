@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -45,13 +46,24 @@ class ComunasFragment : Fragment() {
 
         adapter.selectedNamesItem().observe(viewLifecycleOwner, Observer {
             it?.let {
-
+                if(it.fav)  {
+                    it.fav = false
+                    viewModel.updateFav(it)
+                    Toast.makeText(context, "Ya no es fav", Toast.LENGTH_LONG).show()
+                } else {
+                    it.fav = true
+                    viewModel.updateFav(it)
+                    Toast.makeText(context, "Es fav", Toast.LENGTH_LONG).show()
+                }
 
                 val bundle = Bundle()
                 bundle.putString("nombre", it.name)
                 bundle.putString("comuna",it.commune)
                 bundle.putString("direccion", it.address)
                 bundle.putString("telefono", it.tel)
+                bundle.putString("latitud",it.lat)
+                bundle.putString("longitud",it.longi)
+                bundle.putString("id", it.id)
 
                 findNavController().navigate(R.id.action_comunasFragment_to_SecondFragment,bundle)
             }

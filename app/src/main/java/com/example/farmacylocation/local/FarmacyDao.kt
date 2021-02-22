@@ -35,5 +35,7 @@ interface FarmacyDao {
     @Query("SELECT * FROM farmacy_table WHERE commune = :comuna")
     fun getFarmacybyName (comuna: String): LiveData<List<FarmacyEntity>>
 
+    @Query("SELECT * FROM farmacy_table WHERE id = :idFarmacy")
+    fun getFarmacyById (idFarmacy:String): LiveData<FarmacyEntity>
 
 }

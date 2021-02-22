@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.example.farmacylocation.databinding.ComunaListBinding
 import com.example.farmacylocation.databinding.FarmacyListBinding
 import com.example.farmacylocation.local.FarmacyEntity
 
@@ -22,10 +23,10 @@ class ComunasAdapter : RecyclerView.Adapter<ComunasAdapter.FarmacyLocalVH>() {
     }
 
 
-    inner class FarmacyLocalVH (private val binding: FarmacyListBinding) :
+    inner class FarmacyLocalVH (private val binding: ComunaListBinding) :
             RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         fun bind(comunasFarmacy : FarmacyEntity){
-            binding.tVFarmacy.text = comunasFarmacy.name
+            binding.tVComuna.text = comunasFarmacy.name
             itemView.setOnClickListener(this)
         }
 
@@ -36,7 +37,8 @@ class ComunasAdapter : RecyclerView.Adapter<ComunasAdapter.FarmacyLocalVH>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FarmacyLocalVH {
-        return FarmacyLocalVH(FarmacyListBinding.inflate(LayoutInflater.from(parent.context)))
+        return FarmacyLocalVH(ComunaListBinding.inflate(LayoutInflater.from(parent.context)))
+
     }
 
     override fun onBindViewHolder(holder: FarmacyLocalVH, position: Int) {
