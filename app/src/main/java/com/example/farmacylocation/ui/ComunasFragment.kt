@@ -56,6 +56,8 @@ class ComunasFragment : Fragment() {
                     Toast.makeText(context, "Es fav", Toast.LENGTH_LONG).show()
                 }
 
+
+
                 val bundle = Bundle()
                 bundle.putString("nombre", it.name)
                 bundle.putString("comuna",it.commune)

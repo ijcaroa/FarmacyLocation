@@ -36,9 +36,6 @@ class MapsFragment : Fragment() {
 
         }
     }
-
-
-
     private val callback = OnMapReadyCallback { googleMap ->
 
         val ubicationCoordinate = LatLng(latitud,longitud)

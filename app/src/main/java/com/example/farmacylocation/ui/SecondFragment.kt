@@ -1,5 +1,6 @@
 package com.example.farmacylocation.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -63,13 +64,13 @@ class SecondFragment : Fragment() {
 
         }
 
+
                 binding.textVName.text = nombre
                 binding.textVComuna.text = comuna
                 binding.textVAddress.text = direccion
                 binding.textVTelefono.text = telefono
-
                 binding.buttonSecond.setOnClickListener {
-                    findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+                    findNavController().navigate(R.id.action_SecondFragment_to_comunasFragment)
                     
 
         }

@@ -8,11 +8,10 @@
 
     <TextView
         android:id="@+id/tVComuna"
-        android:layout_width="173dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="100dp"
+        android:layout_width="153dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="150dp"
         android:layout_marginBottom="32dp"
         android:background="#FFFFFF"
         android:text="TextView"
@@ -21,12 +20,12 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewFav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewFav"
         android:layout_width="42dp"
         android:layout_height="43dp"
         android:layout_marginTop="32dp"

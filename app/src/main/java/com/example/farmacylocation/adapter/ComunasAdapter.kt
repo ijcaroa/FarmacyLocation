@@ -1,5 +1,6 @@
 package com.example.farmacylocation.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,13 @@ class ComunasAdapter : RecyclerView.Adapter<ComunasAdapter.FarmacyLocalVH>() {
             RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         fun bind(comunasFarmacy : FarmacyEntity){
             binding.tVComuna.text = comunasFarmacy.name
+
+            if(comunasFarmacy.fav) {
+                binding.imageViewFav.setColorFilter(Color.RED)
+                binding.imageViewFav.visibility = View.VISIBLE
+            }else {
+                binding.imageViewFav.visibility = View.GONE
+            }
             itemView.setOnClickListener(this)
         }
 
